@@ -6,10 +6,52 @@ namespace HelloWorld
 {
     class Game
     {
-       
+
+        //private bool gameOver;
+        bool _gameOver = false;
+        //Run the game
+        public void Run()
+        {
+            Start();
+            while (_gameOver == false)
+            {
+                Update();
+
+            }
+            End();
 
 
-        string _playerName;
+        }
+
+        //Performed once when the game begins
+        //used for intizalizing varibles and to perform start up tasks that should be performed once
+        public void Start()
+        {
+            Console.WriteLine("Welcome to Topia!!!!");
+            Console.Write("> ");
+            Console.ReadKey();
+        }
+
+        //Repeated until the game ends
+        //used for all game logic that will repeat
+        //updates images
+        public void Update()
+        {
+            char input = ' ';
+            Console.Clear();
+            Console.WriteLine("\nLoading . . .");
+            Console.Write("> ");
+            input = Console.ReadKey().KeyChar;
+            if (input == 'q')
+            {
+                _gameOver = true;
+            }
+            RequestName();
+            Explore();
+        }
+
+
+        string _playerName = "";
         
         void RequestName()
         {
@@ -37,8 +79,28 @@ namespace HelloWorld
                     Console.WriteLine("Yeah that name was pretty terrible wasn't it?");
                 }
             }
-            _gameOver = true;
+            
         }
+
+        void Explore()
+        {
+            char input = ' ';
+            input = GetInput("Go Left", "Go Right", "You came to a fork in the road.");
+            if (input == '1')
+            {
+                Console.WriteLine("As you were walking you heard a snap. You turn around and see a person aprroaching you with a crossbow. " +
+                    "You take a step back and all of the sudden you are wipped in the air. You got trapped in a net!");
+                Console.WriteLine("- Y O U  D I E D -");
+                _gameOver = true;
+
+            }
+            if (input == '2')
+            {
+                Console.WriteLine("You wonder down the road for awhile and when dawn breaks you find yourself at a village.");
+            }
+
+        }
+
 
         char GetInput(string option1, string option2, string quiry)
         {
@@ -64,51 +126,12 @@ namespace HelloWorld
             return input;
         }
 
-        //private bool gameOver;
-        bool _gameOver = false;
-        //Run the game
-        public void Run()
-        {
-            Start();
-            while (_gameOver == false)
-            {
-                Update();
-                Explore();
-            }
-            End();
 
 
-        }
+       
 
-        //Performed once when the game begins
-        //used for intizalizing varibles and to perform start up tasks that should be performed once
-        public void Start()
-        {
-            Console.WriteLine("Welcome to Topia!!!!");
-            Console.Write("> ");
-            Console.ReadKey();
-        }
-
-        void Explore()
-        {
-            char input = ' ';
-            input = GetInput("Go Left", "Go Right", "You came to a fork in the road.");
-            if (input == '1')
-            {
-                Console.WriteLine("As you were walking you heard a snap. You turn around and see a person aprroaching you with a crossbow. " +
-                    "You take a step back and all of the sudden you are wipped in the air. You got trapped in a net!");
-                Console.WriteLine("- Y O U  D I E D -");
-                _gameOver = true;
-                
-            }
-            if (input == '2')
-            {
-                Console.WriteLine("You wonder down the road for awhile and when dawn breaks you find yourself at a village.");
-            }
-
-        }
-        
-        public void asdfghj() //didn't see name
+       
+        public void asdf() //didn't see name
         {
             RequestName();
             ViewStats();
@@ -143,6 +166,8 @@ namespace HelloWorld
             {
                 _gameOver = true;
             }
+            RequestName();
+                Explore();
         }
 
         //Performed once when the game ends
