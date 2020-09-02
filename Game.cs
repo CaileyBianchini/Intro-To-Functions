@@ -126,7 +126,8 @@ namespace HelloWorld
                 Console.WriteLine("You wonder down the road for awhile.");
             }
 
-            Console.WriteLine("You finally reached civilization!");
+            Console.WriteLine("You finally reached what appears to be a building!");
+            enterRoom(0);
 
 
         }
@@ -202,17 +203,59 @@ namespace HelloWorld
         }
 
         //room exploring
-        void enterRoom(string roomNumber)
+        //make evens be rooms, odds buildings
+        void enterRoom(int roomNumber)
         {
             Console.WriteLine("You are in room " + roomNumber);
+
+            Console.WriteLine("Before you stands a dreary building, its door looked to be rotten and falling off the hinges. You walk up to the door.");
+
+            
+            switch (roomNumber)
+            {
+              
+                case 0:
+                    {
+                        
+                        Console.WriteLine("You leave the seemignly haunted place, good on you.");
+                        break;
+                    }
+                case 1:
+                    {
+                        Console.WriteLine("You walk into the entrance hall and look around. The house to be much bigger than you thought. 'Maybe the house is abandound' you thought" +
+                            ". While it's true that there doesn't seem to have people in it, there seems to be funiture, paintings and much more things just left here." +
+                            " All of the sudden you hear a hiss.");
+                        Console.WriteLine("Suddenly a creature appeared! You look closer at it, it was a snake shark size mouth with acid dripping from their teeth and metal blade like end tails with blood! It then began to attack you!");
+                        int playerhealth = 100;
+                        int enemyhealth = 30;
+                        _gameOver = StartBattle(ref playerhealth, ref enemyhealth);
+                        break;
+
+                    }
+                case 2:
+                    {
+                        roomNumber = roomNumber + 1;
+                        Console.WriteLine("You leave the hallway and enter what seems to be the kitchen." +
+                            " Then you spot it, a dog cat mixed with what seems to be rabies is eating something fleshy, it turns and looks at you. It's attacking!");
+                        int playerhealth = 100;
+                        int enemyhealth = 20;
+                        _gameOver = StartBattle(ref playerhealth, ref enemyhealth);
+                        break;
+                    }
+                default:
+                    {
+                        roomNumber = roomNumber + 1;
+                        Console.WriteLine("The hallway seems to go on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on.");
+                        break;
+                    }
+            }
+            Console.WriteLine("You are in room " + roomNumber);
             char input = ' ';
-            input = GetInput("Go forward", "Go back", "What would you like to do?");
+            input = GetInput("Go forward", "Go back", "What should you do?");
             if(input == '1')
             {
-                roomNumber = roomNumber + 1;
+                enterRoom(roomNumber + 1);
             }
-            Console.WriteLine("You are leaving room " + roomNumber);
-
         }
 
 
